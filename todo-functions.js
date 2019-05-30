@@ -34,14 +34,24 @@ const renderTodos = function (todos, filters) {
     })
 }
 
-// Remove a todo from the list
+// Remove a todo by id
 const removeTodo = function (id) {
-    const todoIndex = todos.findIndex( function (todo) {
+    const todoIndex = todos.findIndex(function (todo) {
         return todo.id === id
     })
 
     if(todoIndex > -1) {
         todos.splice(todoIndex, 1)
+    }
+}
+
+// Toggle the completed value for a given todo
+const toggleTodo = function (id) {
+    const todo = todos.find(function (todo) {
+        return todo.id === id
+    })
+    if (todo !== undefined) {
+        todo.completed = !todo.completed
     }
 }
 
@@ -51,9 +61,16 @@ const generateTodoDOM = function (todo) {
     const checkbox = document.createElement('input')
     const todoText = document.createElement('span')
     const removeButton = document.createElement('button')
+
     // Setup todo checkbox
     checkbox.setAttribute('type', 'checkbox')
+    checkbox.checked = todo.completed
     todoEl.appendChild(checkbox)
+    checkbox.addEventListener('change', function () {
+        toggleTodo(todo.id)
+        saveTodos(todos)
+        renderTodos(todos, filters)
+    })
 
     // Setup the todo text
     todoText.textContent = todo.text
