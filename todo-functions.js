@@ -1,5 +1,5 @@
 // Fetch existing todos from localStorage
-const getSavedTodos = function () {
+const getSavedTodos = () => {
     const todosJSON = localStorage.getItem('todos')
 
     if (todosJSON !== null) {
@@ -10,7 +10,7 @@ const getSavedTodos = function () {
 }
 
 // Save todos to localStorage
-const saveTodos = function (todos) {
+const saveTodos = (todos) => {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
