@@ -22,9 +22,7 @@ const renderTodos = function (todos, filters) {
         return searchTextMatch && hideCompletedMatch
     })
 
-    const incompleteTodos = filteredTodos.filter(function (todo) {
-        return !todo.completed
-    })
+    const incompleteTodos = filteredTodos.filter((todo) => !todo.completed )
 
     document.querySelector('#todos').innerHTML = ''
     document.querySelector('#todos').appendChild(generateSummaryDOM(incompleteTodos))
@@ -36,9 +34,7 @@ const renderTodos = function (todos, filters) {
 
 // Remove a todo by id
 const removeTodo = function (id) {
-    const todoIndex = todos.findIndex(function (todo) {
-        return todo.id === id
-    })
+    const todoIndex = todos.findIndex((todo) =>todo.id === id)
 
     if(todoIndex > -1) {
         todos.splice(todoIndex, 1)
