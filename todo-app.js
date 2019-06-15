@@ -1,3 +1,6 @@
+'use strict'
+
+
 const todos = getSavedTodos ()
 
 const filters = {
